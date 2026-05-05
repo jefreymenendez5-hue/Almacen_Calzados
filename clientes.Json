@@ -1,0 +1,37 @@
+[
+  {
+    "codigo_cliente": "C001",
+    "nombre": "Juan",
+    "apellido": "Pérez",
+    "telefono": "12345678",
+    "direccion": "San Salvador"
+  },
+  {
+    "codigo_cliente": "C002",
+    "nombre": "María",
+    "apellido": "López",
+    "telefono": "87654321",
+    "direccion": "Santa Tecla"
+  },
+  {
+    "codigo_cliente": "C003",
+    "nombre": "Carlos",
+    "apellido": "Ramírez",
+    "telefono": "11223344",
+    "direccion": "Soyapango"
+  },
+  {
+    "codigo_cliente": "C004",
+    "nombre": "Ana",
+    "apellido": "Martínez",
+    "telefono": "55667788",
+    "direccion": "Apopa"
+  },
+  {
+    "codigo_cliente": "C005",
+    "nombre": "Luis",
+    "apellido": "Hernández",
+    "telefono": "99887766",
+    "direccion": "Mejicanos"
+  }
+]
