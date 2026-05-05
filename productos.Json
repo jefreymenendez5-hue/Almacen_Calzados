@@ -1,0 +1,92 @@
+[
+  {
+    "codigo": "P001",
+    "nombre": "Tenis Deportivos",
+    "marca": "Nike",
+    "talla": 42,
+    "color": "Negro",
+    "precio": 60,
+    "stock": 10
+  },
+  {
+    "codigo": "P002",
+    "nombre": "Zapatos Formales",
+    "marca": "Clarks",
+    "talla": 40,
+    "color": "Café",
+    "precio": 45,
+    "stock": 4
+  },
+  {
+    "codigo": "P003",
+    "nombre": "Sandalias",
+    "marca": "Adidas",
+    "talla": 38,
+    "color": "Blanco",
+    "precio": 20,
+    "stock": 8
+  },
+  {
+    "codigo": "P004",
+    "nombre": "Botas",
+    "marca": "Timberland",
+    "talla": 43,
+    "color": "Marrón",
+    "precio": 80,
+    "stock": 3
+  },
+  {
+    "codigo": "P005",
+    "nombre": "Tenis Running",
+    "marca": "Nike",
+    "talla": 41,
+    "color": "Azul",
+    "precio": 70,
+    "stock": 6
+  },
+  {
+    "codigo": "P006",
+    "nombre": "Zapatos Casual",
+    "marca": "Puma",
+    "talla": 39,
+    "color": "Gris",
+    "precio": 35,
+    "stock": 12
+  },
+  {
+    "codigo": "P007",
+    "nombre": "Sandalias Playa",
+    "marca": "Reebok",
+    "talla": 37,
+    "color": "Rosado",
+    "precio": 15,
+    "stock": 20
+  },
+  {
+    "codigo": "P008",
+    "nombre": "Botines",
+    "marca": "Zara",
+    "talla": 40,
+    "color": "Negro",
+    "precio": 55,
+    "stock": 2
+  },
+  {
+    "codigo": "P009",
+    "nombre": "Tenis Urbanos",
+    "marca": "Vans",
+    "talla": 42,
+    "color": "Rojo",
+    "precio": 50,
+    "stock": 9
+  },
+  {
+    "codigo": "P010",
+    "nombre": "Zapatos Escolares",
+    "marca": "Bata",
+    "talla": 36,
+    "color": "Negro",
+    "precio": 30,
+    "stock": 7
+  }
+]
