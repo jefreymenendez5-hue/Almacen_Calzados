@@ -1,97 +1,162 @@
-/* =====================================================
-   ALMACÉN DE CALZADO - EL BUEN PASO
-   Carga dinámica del catálogo desde productos.json
-   ===================================================== */
-
-// Iconos por tipo de producto (asignación según nombre)
-function obtenerIcono(nombreProducto) {
-    const nombre = nombreProducto.toLowerCase();
-    if (nombre.includes('tenis') || nombre.includes('running')) return 'fa-person-running';
-    if (nombre.includes('botas')) return 'fa-boot';
-    if (nombre.includes('botines')) return 'fa-socks';
-    if (nombre.includes('sandalias')) return 'fa-person-walking';
-    if (nombre.includes('formales')) return 'fa-briefcase';
-    if (nombre.includes('escolares')) return 'fa-graduation-cap';
-    if (nombre.includes('deportiv')) return 'fa-dumbbell';
-    if (nombre.includes('tacones') || nombre.includes('tacon')) return 'fa-star';
-    return 'fa-shoe-prints';
-}
-
-// Función principal: cargar productos desde JSON
-async function cargarProductos() {
-    const contenedor = document.getElementById('catalogo-productos');
-    
-    try {
-        const respuesta = await fetch('productos.json');
-        
-        if (!respuesta.ok) {
-            throw new Error('Error al cargar el archivo JSON');
-        }
-        
-        const productos = await respuesta.json();
-        mostrarProductos(productos, contenedor);
-        
-    } catch (error) {
-        console.error('Error:', error);
-        contenedor.innerHTML = `
-            <p class="cargando" style="color: #e74c3c;">
-                <i class="fas fa-exclamation-triangle"></i>
-                No se pudieron cargar los productos. 
-                Asegúrate de abrir este sitio mediante un servidor local 
-                (o usa Live Server en VS Code).
-            </p>
-        `;
-    }
-}
-
-// Mostrar productos en el DOM
-function mostrarProductos(productos, contenedor) {
-    contenedor.innerHTML = '';
-    
-    if (!productos || productos.length === 0) {
-        contenedor.innerHTML = '<p class="cargando">No hay productos disponibles.</p>';
-        return;
-    }
-    
-    productos.forEach(producto => {
-        const card = document.createElement('article');
-        card.className = 'producto-card';
-        
-        const icono = obtenerIcono(producto.nombre);
-        
-        card.innerHTML = `
-            <span class="producto-codigo">${producto.codigo}</span>
-            <div class="producto-icono">
-                <i class="fas ${icono}"></i>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Almacén de Calzado - Paso Firme</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- HEADER / NAVEGACIÓN -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-person-walking"></i>
+                <h1>Paso Firme</h1>
             </div>
-            <h3 class="producto-nombre">${producto.nombre}</h3>
-            <p class="producto-marca">${producto.marca}</p>
-            <p class="producto-precio">$${producto.precio}.00</p>
-        `;
-        
-        contenedor.appendChild(card);
-    });
-}
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                    <li><a href="#productos" class="nav-link">Productos</a></li>
+                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                    <li><a href="#evidencias" class="nav-link">Evidencias</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-// Scroll suave para los enlaces de navegación
-function configurarScrollSuave() {
-    document.querySelectorAll('.nav-link, .banner-btn').forEach(link => {
-        link.addEventListener('click', (e) => {
-            const href = link.getAttribute('href');
-            if (href && href.startsWith('#')) {
-                e.preventDefault();
-                const seccion = document.querySelector(href);
-                if (seccion) {
-                    seccion.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            }
-        });
-    });
-}
+    <!-- BANNER PRINCIPAL -->
+    <section id="inicio" class="banner">
+        <div class="banner-content">
+            <h2 class="banner-title">Paso Firme</h2>
+            <p class="banner-subtitle">Calidad y estilo en cada paso que das</p>
+            <a href="#productos" class="banner-btn">Ver Catálogo</a>
+        </div>
+    </section>
 
-// Inicialización al cargar la página
-document.addEventListener('DOMContentLoaded', () => {
-    cargarProductos();
-    configurarScrollSuave();
-    console.log('👟 Almacén de Calzado "Paso Firme" - Sistema cargado');
-});
+    <!-- CATÁLOGO DE PRODUCTOS -->
+    <section id="productos" class="seccion">
+        <div class="seccion-header">
+            <h2 class="seccion-titulo">Nuestro Catálogo</h2>
+            <p class="seccion-descripcion">Descubre nuestra variedad de calzado para toda ocasión</p>
+        </div>
+        <div id="catalogo-productos" class="grid-productos">
+            <p class="cargando">Cargando productos...</p>
+        </div>
+    </section>
+
+    <!-- EVIDENCIAS -->
+    <section id="evidencias" class="seccion seccion-alt">
+        <div class="seccion-header">
+            <h2 class="seccion-titulo">Evidencias de Consultas MongoDB</h2>
+            <p class="seccion-descripcion">Capturas de las consultas realizadas en la base de datos del almacén</p>
+        </div>
+        <div class="grid-evidencias">
+            <article class="evidencia-card">
+                <img src="images/evidencia1.png" alt="Consulta productos con stock menor a 5" loading="lazy">
+                <div class="evidencia-info">
+                    <h3>Productos con bajo stock</h3>
+                    <p>Consulta: <code>{ stock: { $lt: 5 } }</code> – Muestra los productos con existencias menores a 5 unidades.</p>
+                </div>
+            </article>
+            <article class="evidencia-card">
+                <img src="images/evidencia2.png" alt="Productos de la marca Nike" loading="lazy">
+                <div class="evidencia-info">
+                    <h3>Productos marca Nike</h3>
+                    <p>Consulta: <code>{ marca: "Nike" }</code> – Filtra todos los productos de la marca Nike disponibles.</p>
+                </div>
+            </article>
+            <article class="evidencia-card">
+                <img src="images/evidencia3.png" alt="Stock menor a 5 detalle" loading="lazy">
+                <div class="evidencia-info">
+                    <h3>Detalle stock bajo</h3>
+                    <p>Resultado de la consulta de productos con poca existencia, ordenados por precio.</p>
+                </div>
+            </article>
+            <article class="evidencia-card">
+                <img src="images/evidencia4.png" alt="Consulta venta V001" loading="lazy">
+                <div class="evidencia-info">
+                    <h3>Búsqueda venta V001</h3>
+                    <p>Consulta: <code>{ numero_venta: "V001" }</code> – Localiza la venta específica realizada a Juan Pérez.</p>
+                </div>
+            </article>
+            <article class="evidencia-card">
+                <img src="images/evidencia5.png" alt="Resultado venta V001" loading="lazy">
+                <div class="evidencia-info">
+                    <h3>Detalle de venta</h3>
+                    <p>Información completa de una venta: cliente, producto, cantidad y total facturado.</p>
+                </div>
+            </article>
+            <article class="evidencia-card">
+                <img src="images/evidencia6.png" alt="Listado de clientes" loading="lazy">
+                <div class="evidencia-info">
+                    <h3>Listado de Clientes</h3>
+                    <p>Visualización de todos los clientes registrados en la colección Clientes (5 documentos).</p>
+                </div>
+            </article>
+            <article class="evidencia-card">
+                <img src="images/evidencia7.png" alt="Listado completo de productos" loading="lazy">
+                <div class="evidencia-info">
+                    <h3>Catálogo completo</h3>
+                    <p>Visualización de los 10 productos almacenados en la colección Productos del clúster.</p>
+                </div>
+            </article>
+            <article class="evidencia-card">
+                <article class="evidencia-card-inner"></article>
+                <img src="images/evidencia8.png" alt="Listado de ventas" loading="lazy">
+                <div class="evidencia-info">
+                    <h3>Registro de Ventas</h3>
+                    <p>Listado de las ventas realizadas en el almacén con todos sus campos detallados.</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="seccion">
+        <div class="seccion-header">
+            <h2 class="seccion-titulo">Contáctanos</h2>
+            <p class="seccion-descripcion">Estamos para atenderte</p>
+        </div>
+        <div class="contacto-container">
+            <div class="contacto-card">
+                <i class="fas fa-mobile-screen-button"></i>
+                <h3>Teléfono</h3>
+                <p>+503 2222-3344</p>
+                <p>+503 7766-5500</p>
+            </div>
+            <div class="contacto-card">
+                <i class="fas fa-location-dot"></i>
+                <h3>Dirección</h3>
+                <p>Avenida Principal #123</p>
+                <p>San Salvador, El Salvador</p>
+            </div>
+            <div class="contacto-card">
+                <i class="fas fa-envelope"></i>
+                <h3>Correo</h3>
+                <p>contacto@elbuenpaso.sv</p>
+                <p>ventas@elbuenpaso.sv</p>
+            </div>
+            <div class="contacto-card">
+                <i class="fas fa-clock"></i>
+                <h3>Horario</h3>
+                <p>Lunes a Viernes: 8am - 6pm</p>
+                <p>Sábados: 9am - 1pm</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>Proyecto Escolar - Paso Firme</h3>
+            <p>Sistema de gestión con MongoDB</p>
+            <p class="footer-year">&copy; 2026 - Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
