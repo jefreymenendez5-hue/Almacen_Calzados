@@ -1,0 +1,41 @@
+
+    "numero_venta": "V001",
+    "fecha": "2026-05-04T10:00:00Z",
+    "cliente": "Juan Pérez",
+    "producto": "Tenis Deportivos",
+    "cantidad": 1,
+    "total": 60
+  },
+  {
+    "numero_venta": "V002",
+    "fecha": "2026-05-04T10:10:00Z",
+    "cliente": "María López",
+    "producto": "Sandalias",
+    "cantidad": 2,
+    "total": 40
+  },
+  {
+    "numero_venta": "V003",
+    "fecha": "2026-05-04T10:20:00Z",
+    "cliente": "Carlos Ramírez",
+    "producto": "Botas",
+    "cantidad": 1,
+    "total": 80
+  },
+  {
+    "numero_venta": "V004",
+    "fecha": "2026-05-04T10:30:00Z",
+    "cliente": "Ana Martínez",
+    "producto": "Zapatos Casual",
+    "cantidad": 1,
+    "total": 35
+  },
+  {
+    "numero_venta": "V005",
+    "fecha": "2026-05-04T10:40:00Z",
+    "cliente": "Luis Hernández",
+    "producto": "Tenis Urbanos",
+    "cantidad": 1,
+    "total": 50
+  }
+]
